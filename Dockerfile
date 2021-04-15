@@ -39,8 +39,6 @@ RUN if [ "$buildGradle" = "true" ]; then ./gradlew :projector-server:distZip; el
 FROM debian AS projectorStaticFiles
 
 # prepare tools:
-RUN  sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
-    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install unzip -y
 # create the Projector dir:
