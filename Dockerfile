@@ -17,8 +17,6 @@
 FROM debian AS ideDownloader
 
 # prepare tools:
-RUN  sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
-    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install wget -y
 # download IDE to the /ide dir:
