@@ -64,8 +64,6 @@ RUN true \
     && set -e \
     # Activate debugging to show execution details: all commands will be printed before execution
     && set -x \
-    && sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
-    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
     # install packages:
     && apt-get update \
     # packages for awt:
