@@ -17,6 +17,8 @@
 FROM debian AS ideDownloader
 
 # prepare tools:
+RUN  sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
+    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install wget -y
 # download IDE to the /ide dir:
@@ -39,6 +41,8 @@ RUN if [ "$buildGradle" = "true" ]; then ./gradlew :projector-server:distZip; el
 FROM debian AS projectorStaticFiles
 
 # prepare tools:
+RUN  sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
+    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install unzip -y
 # create the Projector dir:
@@ -64,6 +68,8 @@ RUN true \
     && set -e \
     # Activate debugging to show execution details: all commands will be printed before execution
     && set -x \
+    && sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
+    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
     # install packages:
     && apt-get update \
     # packages for awt:
