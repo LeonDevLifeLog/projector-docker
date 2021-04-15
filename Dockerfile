@@ -115,6 +115,7 @@ RUN true \
 
 COPY --from=projectorStaticFiles $PROJECTOR_DIR/momosec_bashrc /etc/momosec_bashrc
 RUN chmod a+x /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && ./etc/momosec_bashrc" >> /etc/bashrc
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh && rm /bin/dash
 
 USER $PROJECTOR_USER_NAME
 ENV HOME /home/$PROJECTOR_USER_NAME
