@@ -113,8 +113,6 @@ RUN true \
     && chown -R $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME $PROJECTOR_DIR/ide/bin \
     && chown $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME run.sh
 
-RUN chmod 700 /bin/sh
-
 COPY --from=projectorStaticFiles $PROJECTOR_DIR/momosec_bashrc /etc/momosec_bashrc
 RUN chmod a+x /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && ./etc/momosec_bashrc" >> /etc/bashrc
 
