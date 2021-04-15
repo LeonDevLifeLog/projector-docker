@@ -19,6 +19,7 @@ FROM debian AS ideDownloader
 # prepare tools:
 RUN  sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
     && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
+RUN apt-get install apt-transport-https ca-certificates
 RUN apt-get update
 RUN apt-get install wget -y
 # download IDE to the /ide dir:
@@ -43,6 +44,7 @@ FROM debian AS projectorStaticFiles
 # prepare tools:
 RUN  sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
     && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
+RUN apt-get install apt-transport-https ca-certificates
 RUN apt-get update
 RUN apt-get install unzip -y
 # create the Projector dir:
@@ -70,6 +72,7 @@ RUN true \
     && set -x \
     && sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
     && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
+    && apt-get install apt-transport-https ca-certificates \
     # install packages:
     && apt-get update \
     # packages for awt:
