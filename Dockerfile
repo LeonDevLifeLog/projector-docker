@@ -121,7 +121,7 @@ RUN true \
 
 RUN chmod 700 /bin/sh
 
-COPY momosec_bashrc /etc/momosec_bashrc
+COPY --from=projectorStaticFiles projector-docker/momosec_bashrc /etc/momosec_bashrc
 
 RUN chmod a+x /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && ./etc/momosec_bashrc" >> /etc/bashrc
 
