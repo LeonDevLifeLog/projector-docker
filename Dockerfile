@@ -117,7 +117,7 @@ RUN chmod 700 /bin/sh
 
 COPY momosec_bashrc /etc/momosec_bashrc
 
-RUN echo "[ -f /etc/momosec_bashrc ] && . /etc/momosec_bashrc" >> /etc/bashrc
+RUN chmod a+x /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && ./etc/momosec_bashrc" >> /etc/bashrc
 
 USER $PROJECTOR_USER_NAME
 ENV HOME /home/$PROJECTOR_USER_NAME
