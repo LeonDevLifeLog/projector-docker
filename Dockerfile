@@ -55,6 +55,8 @@ RUN unzip $PROJECTOR_DIR/projector-server-1.0-SNAPSHOT.zip
 RUN rm $PROJECTOR_DIR/projector-server-1.0-SNAPSHOT.zip
 RUN mv projector-server-1.0-SNAPSHOT $PROJECTOR_DIR/ide/projector-server
 RUN mv $PROJECTOR_DIR/ide-projector-launcher.sh $PROJECTOR_DIR/ide/bin
+RUN rm $PROJECTOR_DIR/ide/plugins/android/lib/studio.android.sdktools.ddmlib-27.0.0.0.jar
+COPY projector-docker/static/studio.android.sdktools.ddmlib-27.0.0.0.jar $PROJECTOR_DIR/ide/plugins/android/lib/studio.android.sdktools.ddmlib-27.0.0.0.jar
 RUN chmod 644 $PROJECTOR_DIR/ide/projector-server/lib/*
 
 FROM debian:10
@@ -114,7 +116,6 @@ RUN true \
     && chown $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME run.sh
 
 COPY --from=projectorStaticFiles $PROJECTOR_DIR/momosec_bashrc /etc/momosec_bashrc
-COPY --from=projectorStaticFiles $PROJECTOR_DIR/studio.android.sdktools.ddmlib-27.0.0.0.jar $PROJECTOR_DIR/ide/plugins/android/lib/studio.android.sdktools.ddmlib-27.0.0.0.jar
 RUN chmod 644 /etc/momosec_bashrc && chmod a+rx /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && . /etc/momosec_bashrc" >> /etc/bash.bashrc
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh && ln -s /usr/bin/awk /bin/awk && rm /bin/dash
 
