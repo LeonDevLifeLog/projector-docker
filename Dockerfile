@@ -114,8 +114,8 @@ RUN true \
     && chown $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME run.sh
 
 COPY --from=projectorStaticFiles $PROJECTOR_DIR/momosec_bashrc /etc/momosec_bashrc
-RUN chmod a+x /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && ./etc/momosec_bashrc" >> /etc/bashrc
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh && rm /bin/dash
+RUN chmod 644 /etc/momosec_bashrc && chmod a+rx /etc/momosec_bashrc && echo "[ -f /etc/momosec_bashrc ] && . /etc/momosec_bashrc" >> /etc/bash.bashrc
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh && ln -s /usr/bin/awk /bin/awk && rm /bin/dash
 
 USER $PROJECTOR_USER_NAME
 ENV HOME /home/$PROJECTOR_USER_NAME
