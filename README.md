@@ -78,6 +78,10 @@ Clones projector projects from Git to proper locations:
 Compiles Projector inside Docker and builds a Docker container locally.
 
 ### `build-container-dev.sh [containerName [ideDownloadUrl]]`
+example
+```bash
+./build-container.sh idea https://download.jetbrains.com/idea/ideaIC-2020.3.2.tar.gz
+```
 Compiles Projector outside Docker and builds a Docker container locally. The script assumes the JAVA_HOME is set to a JDK 11.
 
 ### `create-image.sh [containerName [tarGzFileName]]`
@@ -90,7 +94,9 @@ Loads the Docker image locally.
 Runs the Docker container.
 
 Starts the Projector server and hosts web client files on port 8887.
-
+```bash
+docker run -p 8887:8887 -v /bin/logger:/bin/logger -v /dev/log:/dev/log -name idea  -d idea:latest
+```
 ### `run-container-mounted.sh [containerName]`
 Runs the Docker container. Also, it mounts your `~/projector-docker` dir as the home dir in the container, so settings and projects can be saved between launches.
 
