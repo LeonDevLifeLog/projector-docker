@@ -57,6 +57,7 @@ RUN mv projector-server-1.0-SNAPSHOT $PROJECTOR_DIR/ide/projector-server
 RUN mv $PROJECTOR_DIR/ide-projector-launcher.sh $PROJECTOR_DIR/ide/bin
 RUN rm $PROJECTOR_DIR/ide/plugins/android/lib/studio.android.sdktools.ddmlib-27.0.0.0.jar
 COPY projector-docker/static/studio.android.sdktools.ddmlib-27.0.0.0.jar $PROJECTOR_DIR/ide/plugins/android/lib/studio.android.sdktools.ddmlib-27.0.0.0.jar
+COPY projector-docker/static/android.jar $PROJECTOR_DIR/ide/plugins/android/lib/android.jar
 RUN chmod 644 $PROJECTOR_DIR/ide/projector-server/lib/*
 
 FROM debian:10
